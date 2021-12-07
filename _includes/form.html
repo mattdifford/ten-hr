@@ -1,0 +1,129 @@
+{% if include.item %}
+{% assign widget = include.item %}
+{% assign nested = true %}
+{%else %}
+{% assign widget = blok %}
+{% assign nested = false %}
+{%endif %}
+{{widget._editable}}
+{% assign fieldset_count = 0%}
+{% assign pixel_id = s_section.pixel_id %}
+<div class="form-wrapper">
+    <form class="form hidden-on-load{%if nested == true%} form--nested{%endif%}" id="form" netlify>
+        <input type="hidden" name="api_suffix" value="{{widget.api_suffix}}">
+        <input type="hidden" name="redirect_url" value="{{widget.redirect_url}}">
+        <input type="hidden" name="postback_url" value="{{widget.postback_url]}}">
+        <input type="hidden" name="channel_id" value="{{widget.channel_id}}">
+        <input type="hidden" name="channelId" value="{{widget.channel_id}}">
+        <input type="hidden" name="supplierId" value="{{site.default_supplier_id}}">
+        <input type="hidden" name="supplierkey" value="{{site.default_supplier_key}}">
+        {% if widget.pre_form_text %}
+        <div class="form__pre-form-text">
+            {{widget.pre_form_text | markdownify}}
+        </div>
+        {%-endif-%}
+        {%- for field in widget.fields -%}
+        {%- if field.type == 'data' && !included_data -%}
+        {%- assign included_data = true -%}
+        {%-endif-%}
+        {% if field.type == 'postcode_lookup'%}
+        {%- assign postcode_lookup = 'true' -%}
+        {%-endif-%}
+        {%- if forloop.first == true -%}
+        {% assign fieldset_name = "first"%}
+        <fieldset class="form__fieldset active" data-fieldset-name="first" data-index="{{-fieldset_count-}}">
+            {%- elsif field.type == 'fieldset' -%}
+            {%- assign fieldset_count = fieldset_count | plus: 1-%}
+
+            <div class="form__buttons">
+                {% if fieldset_count > 1%}
+                <div class="form__back"><button type="button" class="form__back-button button--medium">Back</button>
+                </div>
+                {% endif %}
+                <div class="form__proceed"><button type="button" class="form__proceed-button button--medium"
+                        id="{{widget.title | slugify}}_proceed_button_{{-fieldset_count-}}">Continue</button>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="form__fieldset" data-fieldset-name="f_{{-field.name-}}" data-index="{{-fieldset_count-}}">
+            {% capture fieldset_name%}f_{{field.name}}{%endcapture%}
+            {%- endif -%}
+            {%- if field.type != 'fieldset' -%}
+            <div class="form__field form__field--{{field.type}} form__field--{{field.name}}"{%if field.condition_field.size > 0%} data-condition-field="{{field.condition_field}}" data-condition-value="{{field.condition_value}}"{%endif%}>
+                {%- capture field_include -%}field_{{-field.type-}}.html{%- endcapture -%}
+                {%- assign field_slug = field.name | slugify 'latin' -%}
+                {%- if field.type == 'radio' -%}
+                {%- include {{-field_include |trim-}} form_name=widget.title label=field.label name=field.name
+                slug=field_slug
+                type=field.type options=field.options helptext=field.helptext required=field.required
+                fieldset=fieldset_name
+                store=field.store-%}
+                {%- elsif field.type == 'text' -%}
+                {%- include {{-field_include |trim-}} text=field.helptext-%}
+                {%- else -%}
+                {%- include {{-field_include |trim-}} min=field.min max=field.max form_name=widget.title
+                label=field.label
+                name=field.name
+                slug=field_slug type=field.type helptext=field.helptext required=field.required
+                placeholder=field.placeholder options=field.options fieldset=fieldset_name store=field.store
+                autocomplete=field.autocomplete non_floating_label=field.non_floating_label-%}
+                {%- endif -%}
+            </div>
+            {%-endif -%}
+            {%- if forloop.last == true-%}
+            {% assign post_submit_text = widget.post_submit_text | replace: '\[submit_text\]', widget.submit_text %}
+            {% assign post_submit_text = post_submit_text | markdownify %}
+            {% assign post_submit_text = post_submit_text | replace: "<a ", "<a target='_blank' " %}
+            {% if widget.post_submit_text.size > 0%}<div class="form__post-submit-text">{{post_submit_text}}</div>{%endif%}
+            {%- assign fieldset_count = fieldset_count | plus: 1-%}
+            <div class="form__buttons form__buttons--submit">
+                {% if fieldset_count > 1%}
+                <div class="form__back">
+                    <button type="button" class="form__back-button button--medium">Back</button>
+                </div>
+                {% endif %}
+                <div class="form__submit"><button type="button" class="form__submit-button button--medium"
+                        id="{{widget.title | slugify}}_submit_button">{{widget.submit_text}}</button>
+                </div>
+        </fieldset>
+        {% if fieldset_count > 1 %}
+        <div class="form__steps">
+            <p>Step 0<span class="form__steps--current">1</span> / 0{{fieldset_count}}</p>
+            <div class="form__progress-bar"><span class="inner" style="width: 0%;"></span></div>
+        </div>
+        {% endif %}
+        <div class="form__wrapper">
+            <img src="/images/upload/letsencrypt.svg" alt="LetsEncrypt" class="form__le" />
+            <p class="form__disclaimer">
+                <span>Safe</span>
+                <span>Secure</span>
+                <span><a href="/privacy-policy" target="_blank" rel="noopener">Privacy protected</a></span>
+            </p>
+            <div class="form__logos">
+                <img src="/images/transparent.png" class="lazyload" data-src="/images/upload/lock.svg" alt="Secure" />
+                <img src="/images/transparent.png" class="lazyload" data-src="/images/upload/data.svg"
+                    alt="Your data matters" />
+            </div>
+        </div>
+        {%-endif -%}
+        {%- endfor -%}
+        {% for utm_field in site.utm_fields %}
+        <input type="hidden" name="{{utm_field}}">
+        {% endfor %}
+        <input type="hidden" name="internal_source" value="1">
+    </form>
+</div>
+<script>
+    {% if widget.confirmation_page %}
+    window.confirmation_page = "{{widget.confirmation_page}}";
+    {% endif %}
+
+    {% if widget.pixel_id.size > 0 %}
+    window.internal_pixel_id = {{ widget.pixel_id }};
+    {% endif %}
+    window.is_form_page = true;
+</script>
+<script>
+    window.postJqueryScripts.push("/js/bundle-form.js");
+</script>
+{% include style.html blok=widget %}

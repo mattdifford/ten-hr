@@ -1,0 +1,19 @@
+{{blok._editable}}
+<div class="featured-strip hidden-on-load{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}">
+    <div class="container">
+        <div class="featured-strip__wrapper">
+            <div class="featured-strip__title">
+                <h3>Names you can trust</h3>
+            </div>
+            <div class="featured-strip__list">
+                {%- for item in blok.brands -%}
+                {%-include picture.html url=item.filename alt=item.alt type="png"-%}
+                {%- endfor -%}
+            </div>
+        </div>
+    </div>
+</div>
+{% include style.html blok=blok%}
+<script>
+    window.postJqueryScripts.push("/js/src/featured_strip.js")
+</script>

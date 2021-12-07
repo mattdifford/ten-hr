@@ -1,0 +1,181 @@
+.tabs-strip {
+    padding: 40px 0;
+  }
+  
+  .tabs-block {
+    @include in_size($md) {
+      max-width: 75%;
+      margin: 0 auto;
+    }
+    &--accordian {
+      .tabs-block {
+        &__item {
+          border-bottom: 1px solid var(--colour-border);
+          transition: var(--transition);
+          &:not(.open):hover {
+            background: var(--colour_mid_grey);
+          }
+          &:first-child {
+            .tabs-block__item-title {
+              border-top: 1px solid var(--colour-border);
+            }
+          }
+          &-title {
+            font-size: 20px;
+            margin: 0;
+            padding: 15px 75px 15px 10px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+  
+            &:before,
+            &:after {
+              content: "";
+              position: absolute;
+              background: currentColor;
+              transform-origin: center;
+              transition: var(--transition);
+              height: 4px;
+              width: 30px;
+              right: 5px;
+              top: 24px;
+            }
+            &:before {
+              transform: rotate(90deg);
+            }
+          }
+          &-content {
+            display: none;
+          }
+          &.open {
+            border-bottom-width: 2px;
+            .tabs-block__item-title:before {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+    &--tabs {
+      .tabs-block {
+        &__titles {
+          &-item {
+            font-size: 20px;
+            margin: 0;
+            position: relative;
+            cursor: pointer;
+            &:not(.active):hover:after {
+              opacity: 1;
+            }
+          }
+        }
+        &__tabs {
+          position: relative;
+          &-item {
+            position: absolute;
+            opacity: 0;
+            transition: all 0.4s ease-in-out 0s;
+            &.active {
+              transition: all 0.4s ease-in-out 0.4s;
+              opacity: 1;
+            }
+          }
+        }
+      }
+      &-vertical {
+        @include in_size($sm) {
+          display: flex;
+          .tabs-block {
+            &__tabs {
+              flex: 1;
+              padding-left: 30px;
+            }
+            &__titles {
+              flex: 0 1 auto;
+              border-right: 1px solid var(--colour-border);
+              &-item {
+                padding: 0 20px;
+                margin: 20px 0;
+                &:after {
+                  content: "";
+                  display: block;
+                  background: var(--colour-dark-grey);
+                  height: 100%;
+                  position: absolute;
+                  width: 5px;
+                  left: 100%;
+                  border-radius: 2.5px;
+                  margin-left: -2px;
+                  top: 0;
+                  opacity: 0;
+                  transition: var(--transition);
+                }
+                &.active:after {
+                  opacity: 1;
+                  background: var(--colour-primary);
+                }
+              }
+            }
+          }
+        }
+        @include in_size($xs) {
+          .tabs-block {
+            &__titles {
+              display: flex;
+              width: 100%;
+              justify-content: center;
+              border-bottom: 1px solid var(--colour-border);
+              &-item {
+                padding: 20px 0;
+                margin: 0 10px;
+                &.active {
+                  &:after {
+                    content: "";
+                    display: block;
+                    background: var(--colour-primary);
+                    width: 100%;
+                    position: absolute;
+                    height: 5px;
+                    top: 100%;
+                    border-radius: 2.5px;
+                    margin-top: -2px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      &-horizontal {
+        .tabs-block {
+          &__titles {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            border-bottom: 1px solid var(--colour-border);
+            &-item {
+              padding: 20px 0;
+              margin: 0 10px;
+              &:after {
+                content: "";
+                display: block;
+                background: var(--colour-dark-grey);
+                width: 100%;
+                position: absolute;
+                height: 5px;
+                top: 100%;
+                border-radius: 2.5px;
+                margin-top: -2px;
+                opacity: 0;
+                transition: var(--transition);
+              }
+              &.active:after {
+                opacity: 1;
+                background: var(--colour-primary);
+              }
+            }
+          }
+        }
+      }
+    }
+  }

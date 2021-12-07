@@ -1,0 +1,23 @@
+{% if include.label %}
+{%assign label = include.label%}
+{%assign slug = include.name%}
+{% else %}
+{%assign label = include.name%}
+{%assign slug = include.slug%}
+{%endif%}
+<label for={{slug}} class="field__label">{{label}}</label>
+{% if include.type %}
+{%assign field_type = include.type%}
+{%else%}
+{%assign field_type = "text"%}
+{%endif%}
+<select name="{{slug}}" required="{{-input.required-}}" id="{{slug}}"
+    class="field__input field__input--select" data-parsley-group="{{include.fieldset}}"{%if include.store%} data-store="true"{%endif%}>
+    <option selected disabled>Please choose</option>
+    {% for option in include.options %}
+    <option value="{{option.value}}">{{option.title}}</option>
+    {% endfor %}
+</select>
+{%- if include.helptext.size > 0 -%}
+<p class="field__helptext">{{-include.helptext-}}</p>
+{%- endif -%}

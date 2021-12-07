@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+{%-include head.html seo=page.story.content.seo no_index=page.story.content.no_index-%}
+
+<body>
+    {%- include header.html nav=page.global.data.story.content.header_navigation hide_nav=page.story.content.hide_nav
+    -%}
+    {{page.story.content._editable}}
+    <div class="root">
+        {% for blok in page.story.content.body %}
+        {% include {{blok.component}}.html blok=blok %}
+        {% endfor %}
+    </div>
+    {%- include footer.html nav=page.global.data.story.content.footer_navigation-%}
+</body>
+{%- include foot.html -%}
+
+</html>

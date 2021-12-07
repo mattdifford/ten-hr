@@ -1,0 +1,99 @@
+
+.list-strip-no-carousel{
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+.list-strip-no-carousel__list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    @include in_size($md){
+        width: calc(100% + 32px);
+    }
+
+    &-item{
+        width: 100%;
+        padding: 0 8px;
+        margin-bottom: 16px;
+        @include in_size($sm) {
+            width: 50%;
+            margin-left: 0px;
+        }
+        @include in_size($md) {
+            width: 33%;
+        }
+        &-wrapper{
+            min-height: 450px;
+            height: 100%;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+            background: #fff;
+            border-radius: 4px;
+            &:hover{
+                .list-strip-no-carousel__list-item-content--has-button{
+                    .list-strip-no-carousel__list-item-button{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .center-content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            h3{
+                color: white;
+                margin-top: 0px;
+            }
+        }
+        &-content{
+            div{
+                img{
+                    padding-top: 32px;
+                }
+            }
+            position: relative;
+            
+            height: 100%;
+            padding: 16px;
+            .button_orange{
+                @include button(var(--colour-contrast-orange), #fff, #fff, var(--colour-contrast-orange-lighten), #fff, #fff);
+            }
+            &--has-button{
+                padding-bottom: 67px;
+                @include in_size($md){
+                    padding-bottom: 16px
+                }
+            }
+            .list-strip-no-carousel__list-item-button{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 100;
+                width: 100%;
+                background: var(--colour-secondary);
+                color: var(--button-text);
+                font-size: 16px;
+                display: inline-block;
+                font-weight: var(--font-weight-bold);
+                transition: all 0.2s ease-in-out 0s;
+                cursor: pointer;
+                text-decoration: none;
+                font-family: var(--font-primary);
+                text-align: center;
+                padding: 20px 45px;
+                opacity: 1;
+                @include in_size($md){
+                    opacity: 0;
+                    font-size: 20px;
+                }
+            }
+            p{
+                margin: 0;
+            }
+        }
+    }
+}
+

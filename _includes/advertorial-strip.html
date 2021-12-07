@@ -1,0 +1,55 @@
+{% if include.text %}
+<div class="advertorial-strip strip advertorial-strip--image-{{-include.image_position-}}">
+    <div class="container">
+        <div class="advertorial-strip__outer">
+            <div class="advertorial-strip__wrapper">
+                {% assign current_month = "now" | date: "%B" %}
+                <h1 class="advertorial-strip__title"><a href="{{include.link.url}}">{{include.title | replace:
+                        '[month]', current_month}}</a></h1>
+                <h2 class="advertorial-strip__subtitle"><a href="{{include.link.url}}">{{include.subtitle | replace:
+                        '[month]', current_month}}</a></h2>
+                <h3 class="advertorial-strip__author">
+                    <span><a href="{{include.link.url}}">By: {{include.author}}<strong
+                                class="advertorial-strip__date">{%if include.date.size > 0%}{{include.date | date:
+                                "%d/%m/%y"}}{%endif%}</strong></a></span>
+                </h3>
+                {% if include.top_link.size > 0 %}
+                <a href="{{include.link.url}}"
+                    class="button external_link advertorial-strip__top-link">{{include.top_link}}</a>
+                {% endif %}
+                {% if include.image %}
+                <div class="advertorial-strip__image">
+                    {%-assign image_type = include.image | slice: -3, 3-%}
+                    {%-include picture.html url=include.image alt=site.name type=image_type-%}
+                </div>
+                {%endif%}
+                {% assign text = include.text | markdownify %}
+                {% assign text2 = include.text_2 | markdownify %}
+                {% assign text = text | replace: '<img src="', '<img class=" lazyload" src="/images/transparent.png"
+                    data-src="'| replace: 'a.storyblok.com/f/', 'img2.storyblok.com/filters:format(webp)/f/'%}
+                {% assign text2 = text2 | replace: '<img src="', ' <img class="lazyload" src="/images/transparent.png"
+                    data-src="' | replace: 'a.storyblok.com/f/', 'img2.storyblok.com/filters:format(webp)/f/'%}
+                <div class=" advertorial-strip__content link_tidy cms_content">
+                {{text}}
+            </div>
+            <div class="advertorial-strip__nested-cta">
+                {% for blok in include.mid_content_cta %}
+                {% include {{blok.component}}.html blok=blok %}
+                {% endfor %}
+            </div>
+            <div class="advertorial-strip__content link_tidy cms_content">
+                {{text2}}
+            </div>
+        </div>
+        {% if include.sidebar_images.size > 0 %}
+        <div class="advertorial-strip__sidebar">
+            {% for item in include.sidebar_images %}
+            <a href="{{include.link.url}}" class="external_link" id="sidebar_link_{{forloop.index}}">
+                {% include picture.html url=item.filename alt=item.alt %}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+{%endif%}

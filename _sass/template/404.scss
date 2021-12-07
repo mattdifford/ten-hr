@@ -1,0 +1,21 @@
+.sitemap {
+  padding: 0 0 40px;
+  &__item {
+    display: block;
+    padding: 20px 0;
+    border-top: 1px solid var(--colour-border);
+    &:first-child {
+      border-top: none;
+    }
+    &-inner {
+      color: var(--colour-text-primary);
+      display: inline-block;
+    }
+    &-title {
+      margin: 0;
+    }
+    &-desc {
+      display: block;
+    }
+  }
+}

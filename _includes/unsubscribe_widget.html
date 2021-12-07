@@ -1,0 +1,32 @@
+{% if include.item %}
+{% assign widget = include.item %}
+{% assign nested = true %}
+{%else %}
+{% assign widget = blok %}
+{% assign nested = false %}
+{%endif %}
+{{widget._editable}}
+<div class="form-wrapper">
+    <form class="form hidden-on-load{%if nested == true%} form--nested{%endif%}" id="form" data-parsley-validate>
+        {% if widget.pre_form_text %}
+        <div class="form__pre-form-text">
+            {{widget.pre_form_text | markdownify}}
+        </div>
+        {%-endif-%}
+        <fieldset class="form__fieldset active" data-fieldset-name="first" data-index="{{-fieldset_count-}}">
+            <div class="form__field form__field--email form__field--emailaddress">
+            {%- include field_email.html label="Email address"
+            name="emailaddress" required="true" -%}
+            </div>
+            <div class="form__buttons form__buttons--submit">
+                <div class="form__submit"><button type="button" class="form__submit-button button--medium"
+                        id="unsubscribe_submit_button">Unsubscribe</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script>
+    window.postJqueryScripts.push("/js/bundle-unsub.js")
+</script>
+{%include style.html path="form"%}

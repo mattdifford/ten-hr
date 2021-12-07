@@ -1,0 +1,191 @@
+$xxxs: (
+  max: 400px,
+);
+$xxs: (
+  max: 550px,
+);
+$xs: (
+  max: 992px,
+);
+$sm: (
+  min: 993px,
+);
+$md: (
+  min: 1200px,
+);
+$lg: (
+  min: 1460px,
+);
+$sm-only: (
+  min: map-get($sm, min),
+  max: map-get($md, min) - 1,
+);
+$md-only: (
+  min: map-get($md, min),
+  max: map-get($lg, min) - 1,
+);
+$mobile: (
+  max: map-get($md, min) - 1,
+);
+$tablet: (
+  min: 768px,
+  max: map-get($sm, min) - 1,
+);
+
+@mixin in_size($map) {
+  $query: "";
+
+  @if map-has-key($map, min) {
+    $query: append($query, "(min-width: #{map-get($map, min)})");
+  }
+
+  @if map-has-key($map, min) and map-has-key($map, max) {
+    $query: append($query, "and");
+  }
+
+  @if map-has-key($map, max) {
+    $query: append($query, "(max-width: #{map-get($map, max)})");
+  }
+
+  @media screen and #{$query} {
+    @content;
+  }
+}
+
+@mixin media($map) {
+  @include in_size($map);
+}
+
+@mixin button(
+  $background: var(--colour-primary),
+  $border: var(--colour-primary),
+  $color: var(--button-text),
+  $hover: var(--colour-primary-lighten),
+  $color_hover: var(--button-text),
+  $border_hover: var(--colour-primary),
+  $size: "lg"
+) {
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(#373837, 0.1);
+  background: $background;
+  border: 2px solid $border;
+  color: $color;
+  font-size: 16px;
+  display: inline-block;
+  font-weight: var(--font-weight-bold);
+  transition: all 0.2s ease-in-out 0s;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-primary);
+  text-align: center;
+  @if ($size == "sm") {
+    padding: 10px 20px;
+  } @else if ($size == "md") {
+    padding: 15px 30px;
+  } @else {
+    padding: 20px 45px;
+  }
+  &:not(:disabled):hover {
+    background: $hover;
+    color: $color_hover;
+  }
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-secondary($size: "lg") {
+  @include button(
+    $background: var(--colour-secondary),
+    $border: var(--colour-secondary),
+    $color: var(--colour-secondary-text),
+    $hover: var(--colour-secondary-lighten),
+    $color_hover: var(--colour-secondary-text),
+    $border_hover: var(--colour-secondary-lighten),
+    $size: $size
+  );
+}
+
+@mixin content_styles() {
+  h2,
+  h3 {
+    color: inherit;
+    line-height: 1;
+  }
+  strong {
+    font-weight: var(--font-weight-extra-bold);
+  }
+
+  img {
+    margin: 20px 0;
+    box-shadow: 0 2px 28px 0 var(--box-shadow-color);
+  }
+  a:not(.button) {
+    text-decoration: underline;
+    font-weight: var(--font-weight-extra-bold);
+    color: var(--text-accent);
+  }
+  li {
+    margin: 10px 0;
+  }
+  ol,
+  ul {
+    padding-left: 50px;
+  }
+  ul {
+    li {
+      position: relative;
+      &:before {
+        content: "";
+        display: block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--text-accent);
+        position: absolute;
+        top: 50%;
+        margin-top: -4px;
+        left: -25px;
+      }
+    }
+  }
+  ol {
+    counter-reset: ol-count;
+    li {
+      position: relative;
+      &:before {
+        counter-increment: ol-count;
+        content: "0" counter(ol-count);
+        display: block;
+        color: var(--text-accent);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -25px;
+        font-size: 14px;
+        font-weight: var(--font-weight-bold);
+      }
+    }
+  }
+  blockquote {
+    margin: 40px 0;
+    padding: 15px 25px 15px 85px;
+    color: var(--colour-text-primary);
+    font-weight: var(--font-weight-extra-bold);
+    border: 1px solid var(--colour-border);
+    border-radius: 4px;
+    box-shadow: 0 2px 28px 0 var(--box-shadow-color);
+    position: relative;
+    &:before {
+      content: "\201C";
+      position: absolute;
+      color: var(--text-accent);
+      top: 15px;
+      left: 20px;
+      font-size: 100px;
+      line-height: 1;
+      height: 50px;
+    }
+  }
+}

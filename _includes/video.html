@@ -1,0 +1,7 @@
+{{include.item._editable}}
+<div class="video-wrapper" data-video-id="{{include.item.yt_video_id}}">
+    {% include picture.html url=include.item.thumbnail.filename alt=include.item.thumbnail.alt %}
+</div>
+<script>
+    window.postJqueryScripts.push("/js/src/video.js")
+</script>

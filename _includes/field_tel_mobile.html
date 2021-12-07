@@ -1,0 +1,14 @@
+{% if include.label %}
+{%assign label = include.label%}
+{%assign slug = include.name%}
+{% else %}
+{%assign label = include.name%}
+{%assign slug = include.slug%}
+{%endif%}
+<input type="tel" name="{{slug}}" id="{{slug}}" required="{{-input.required-}}" class="field__input field__input--tel-mobile d8val_inttelephone_mobile_line_opt{% if include.non_floating_label == true%} field__input--non-floating{%endif%}"
+placeholder="{{-include.placeholder-}}" data-parsley-group="{{include.fieldset}}" minlength="11" maxlength="13">
+<label for={{slug}} class="field__label {% unless include.non_floating_label == true%} field__label--floating{%endunless%}">{{label}}</label>
+<span class="shroud"></span>
+{%- if include.helptext.size > 0 -%}
+<p class="field__helptext">{{-include.helptext-}}</p>
+{%- endif -%}

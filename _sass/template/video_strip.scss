@@ -1,0 +1,32 @@
+.video-strip {
+  padding: 40px 0;
+  &__text {
+    flex: 0 1 60%;
+    text-align: center;
+    margin-bottom: 30px;
+    h2,
+    h3 {
+      font-size: 40px;
+      margin: 0 0 15px;
+      line-height: 1;
+    }
+  }
+  &__video {
+    flex: 0 1 60%;
+    img {
+      border-radius: 4px;
+    }
+  }
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  @include in_size($xs) {
+    &__text,
+    &__video {
+      flex: 0 1 100%;
+    }
+  }
+}

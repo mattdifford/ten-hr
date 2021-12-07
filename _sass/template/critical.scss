@@ -1,0 +1,50 @@
+.hidden-on-load {
+  visibility: hidden;
+}
+
+body {
+  margin: 0;
+}
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header {
+  padding: 10px 0;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1460px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+.scrollwatch {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out 0.5s;
+  &.scrolled {
+    opacity: 1;
+  }
+}

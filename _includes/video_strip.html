@@ -1,0 +1,17 @@
+{{blok._editable}}
+<div class="video-strip{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}">
+    <div class="container">
+        <div class="video-strip__wrapper">
+            {% if blok.text.size > 0 %}
+            <div class="video-strip__text">
+                {{blok.text | markdownify}}
+            </div>
+            {% endif %}
+            <div class="video-strip__video scrollwatch">
+                {%assign item = blok.video[0] %}
+                {% include video.html item=item %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include style.html blok=blok%}

@@ -1,0 +1,14 @@
+{{blok._editable}}
+<div class="cta-strip{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}">
+    <div class="container">
+        <div class="cta-strip__wrapper">
+            <div class="cta-strip__content">
+                {{blok.content | markdownify}}
+            </div>
+            <div class="cta-strip__link">
+                <a href="{{blok.link.url}}" class="button">{{blok.link_text}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% include style.html blok=blok%}

@@ -1,0 +1,110 @@
+<div class="header{% unless include.hide_nav == true %} header--has-nav{% endunless%}">
+        <div class="container">
+                <div class="header__wrapper">
+                        <a href="/" class="header__logo" title="{{site.title}}">
+                                {%-assign type = site.logo | slice: -3, 3-%}
+                                {% if type == "svg" %}
+                                <img data-src="{{site.logo}}" alt="{{site.title}}" src="/images/transparent.png"
+                                        class="lazyload" />
+                                {% else %}
+                                {%- include picture.html url=site.logo alt=site.title type="png"-%}
+                                {% endif %}
+                        </a>
+                        {% unless include.hide_nav == true %}
+                        <nav class="header__nav hidden-on-load">
+                                {%- for item in include.nav -%}
+                                {%- if item.link.url.size > 0 -%}
+                                {%- assign link = item.link.url -%}
+                                {%- else -%}
+                                {%- assign link = item.link.cached_url -%}
+                                {%- endif -%}
+                                {%- assign first_char = link | slice: 0 -%}
+                                {%- if item.link.linktype != "url" and first_char != "/" -%}
+                                {%- capture link -%}/{{link}}{%- endcapture -%}
+                                {%- endif -%}
+                                {%- if link == "/home" -%}
+                                {%- assign link = "/" -%}
+                                {%- endif -%}
+                                {%- if forloop.first -%}
+                                <div class="header__nav-item first">
+                                        <a href="{{link}}">{{item.link_text}}</a>
+                                        <div class="header__sub-nav">
+                                                <div class="header__sub-nav-inner">
+                                                        {%- elsif item.is_top_level == true -%}
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="header__nav-item top_level">
+                                        <a href="{{link}}">{{item.link_text}}</a>
+                                        <div class="header__sub-nav">
+                                                <div class="header__sub-nav-inner">
+                                                        {%- else -%}
+                                                        <div class="header__sub-nav-item">
+                                                                <a href="{{link}}">{{item.link_text}}</a>
+                                                        </div>
+                                                        {%- endif -%}
+                                                        {%- if forloop.last -%}
+                                                </div>
+                                        </div>
+                                </div>
+                                {%- endif -%}
+
+                                {%- endfor -%}
+                        </nav>
+                        <div class="header__menu-icon">
+                                <span class="header__menu-icon-inner"></span>
+                                <span class="header__menu-icon-inner"></span>
+                                <span class="header__menu-icon-inner"></span>
+                        </div>
+                        {% endunless%}
+                </div>
+        </div>
+</div>
+{% unless site.hide_cookie_policy == true %}
+<div id="cookies-eu-banner" style="display: none;" class="cookie-banner">
+        <div class="container">
+                <div class="cookie-banner__wrapper">
+                        <p class="cookie-banner__text">By continuing your visit to this site, you accept the use of
+                                cookies by Google
+                                Analytics to make visits statistics. <a href="/privacy-policy" id="cookies-eu-more">Read
+                                        our Privacy Policy</a></p>
+                        <div class="cookie-banner__buttons">
+                                <button id="cookies-eu-reject"
+                                        class="button button--small button--reject">Reject</button>
+                                <button id="cookies-eu-accept"
+                                        class="button button--small button--accept">Accept</button>
+                        </div>
+                </div>
+        </div>
+</div>
+<script type="text/javascript">
+        var sheet = document.querySelectorAll("link[href='/assets/css/cookie_banner.css']");
+        if (sheet.length == 0) {
+                if (document.createStyleSheet) {
+                        document.createStyleSheet("/assets/css/cookie_banner.css");
+                } else {
+                        var stylesheet_cookie_banner = document.createElement('link');
+                        stylesheet_cookie_banner.href = "/assets/css/cookie_banner.css";
+                        stylesheet_cookie_banner.rel = 'stylesheet';
+                        stylesheet_cookie_banner.type = 'text/css';
+                        document.getElementsByTagName('head')[0].appendChild(stylesheet_cookie_banner);
+                }
+        }
+</script>
+{% endunless %}
+{% unless include.hide_nav == true %}
+<script type="text/javascript">
+        var sheet = document.querySelectorAll("link[href='/assets/css/header_nav.css']");
+        if (sheet.length == 0) {
+                if (document.createStyleSheet) {
+                        document.createStyleSheet("/assets/css/header_nav.css");
+                } else {
+                        var stylesheet_header_nav = document.createElement('link');
+                        stylesheet_header_nav.href = "/assets/css/header_nav.css";
+                        stylesheet_header_nav.rel = 'stylesheet';
+                        stylesheet_header_nav.type = 'text/css';
+                        document.getElementsByTagName('head')[0].appendChild(stylesheet_header_nav);
+                }
+        }
+</script>
+{% endunless %}

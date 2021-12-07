@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+{%- include head.html-%}
+
+<body>
+    {%- include_cached header.html -%}
+    <div class="container">
+        <h1>Oops!</h1>
+        <h2>We can't seem to find the page you're looking for.</h2>
+        <h3>We have plenty of other pages which may be able to help you:</h3>
+        <div class="sitemap">
+            {% for page in site.pages %}
+            {% if page.story%}
+            {% if page.story.parent_id == 0 or page.story.is_startpage == true%}
+            <div class="sitemap__item"><a class="sitemap__item-inner" href="/{{page.story.full_slug}}">
+                    <h4 class="sitemap__item-title">{{page.story.name}}</h4><span
+                        class="sitemap__item-desc">{{page.story.content.seo.description}}</span>
+                </a>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% assign current_month = "now" | date: "%B" %}
+            {% for page in site.pages %}
+            {% if page.story%}
+            {% if page.story.content.component == "blog" and page.story.content.is_advertorial == false%}
+            <div class="sitemap__item"><a class="sitemap__item-inner" href="/{{page.story.full_slug}}">
+                    <h4 class="sitemap__item-title">{{page.story.content.title | replace: "[month]", current_month}}</h4><span
+                        class="sitemap__item-desc">{{page.story.content.seo.description}}</span>
+                </a>
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <script type="text/javascript">
+        var sheet = document.querySelectorAll("link[href='/assets/css/404.css']");
+        if (sheet.length == 0) {
+            if (document.createStyleSheet) {
+                document.createStyleSheet("/assets/css/404.css");
+            } else {
+                var stylesheet_404 = document.createElement('link');
+                stylesheet_404.href = "/assets/css/404.css";
+                stylesheet_404.rel = 'stylesheet';
+                stylesheet_404.type = 'text/css';
+                document.getElementsByTagName('head')[0].appendChild(stylesheet_404);
+            }
+        }
+    </script>
+    {%- include_cached footer.html -%}
+    {%- include_cached foot.html layout="404" -%}
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+theme: minima
+show_excerpts: false
+locale: en_GB
+
+minima:
+  date_format: "%b %-d, %Y"
+
+sass:
+  style: compressed
+  sass_dir: _sass
+
+exclude:
+  - .jekyll-cache
+
+plugins:
+  - jekyll-include-cache
+  - jekyll-webp
+
+data_dir: data
+############################################################
+# Site configuration for the WebP Generator Plugin
+webp:
+  enabled: true
+
+  # The quality of the webp conversion 0 to 100 (where 100 is least lossy)
+  quality: 100
+
+  # List of directories containing images to optimize, nested directories will only be checked if `nested` is true
+  # By default the generator will search for a folder called `/img` under the site root and process all jpg, png and tiff image files found there.
+  img_dir: ["/images", "/images/upload"]
+
+  # Whether to search in nested directories or not
+  nested: true
+
+  # add ".gif" to the format list to generate webp for animated gifs as well
+  formats: [".jpeg", ".jpg", ".png", ".tiff"]
+
+  # File extensions for animated gif files
+  gifs: [".gif"]
+
+  # Set to true to always regenerate existing webp files
+  regenerate: false
+
+  # Local path to the WebP utilities to use (relative or absolute)
+  # Omit or leave as nil to use the utilities shipped with the gem, override only to use your local install
+  webp_path: nil
+
+  # List of files or directories to exclude
+  # e.g. custom or hand generated webp conversion files
+  exclude: []
+
+  # append '.webp' to filename after original extension rather than replacing it.
+  # Default transforms `image.png` to `image.webp`, while changing to true transforms `image.png` to `image.png.webp`
+  append_ext: false
+############################################################
+
+d8_live: GNFE-AHTR-L93I-MKGU
+d8_test: 6LAV-4I4L-SRA4-462M
+
+permalink: /:year-:month-:day-:slug'
+
+
+include: 
+  - _redirects
+  - _headers
+  
+utm_fields:
+  - utm_source
+  - utm_medium
+  - utm_campaign
+  - utm_content
+  - utm_adset
+  - utm_sitesource
+  - affsubid1
+  - affsubid2
+  - affsubid3
+
+portal_api_url: https://zuruls.azure-api.net/
+
+default_supplier_key: dc7c2fab-abff-499b-9603-11336d55553d
+default_supplier_id: 249
+
+title: Tax Reclaimed
+url: "https://www.taxreclaimed.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
+description: For life insurance, equity release and more, find the financial help you need in a matter of minutes.
+logo: /images/logo.png
+logo_footer: /images/logo-white.png
+
+twitter_url:
+facebook_url: https://www.facebook.com/taxreclaimed
+instagram_url:
+
+# Settings for your Storyblok space
+storyblok:
+  token: "EcLhw8tBkVHm2Wz27h2EPAtt"
+  # Can be either `draft` or `published`
+  version: draft
+
+WebsiteId: 10
+
+hide_address: true
+
+

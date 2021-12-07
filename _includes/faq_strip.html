@@ -1,0 +1,40 @@
+{{blok._editable}}
+
+<div class="faq-strip faq-strip--{{blok.layout}}{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}">
+    <div class="container">
+        <div class="faq-strip__wrapper">
+            <div class="faq-strip__content">
+                {{blok.content | markdownify}}
+            </div>
+            <div class="faq-strip__list">
+                {% for faq in blok.faqs %}
+                <div class="faq-strip__item">
+                    <h3 class="faq-strip__item-question">{{faq.question}}</h3>
+                    <div class="faq-strip__item-answer">{{faq.answer | markdownify}}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.postJqueryScripts.push("/js/src/faq.js")
+</script>
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+      {% for faq in blok.faqs %}
+      {
+        "@type": "Question",
+        "name": "{{faq.question}}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text":"{{faq.answer}}"}
+        }{%unless forloop.last == true%},{%endunless%}
+      {% endfor %}
+      ]
+    }
+    </script>
+{% include style.html blok=blok%}

@@ -1,0 +1,12 @@
+{% if include.label %}
+{%assign label = include.label%}
+{%assign slug = include.name%}
+{% else %}
+{%assign label = include.name%}
+{%assign slug = include.slug%}
+{%endif%}
+<input name="{{include.name}}" id="{{include.name}}" value="true" class="field__checkbox" type="checkbox" data-parsley-required="{{include.required}}"{% if include.required == true%} required="required"{%endif%} {% if include.required == true%} data-parsley-mincheck="1"{%endif%}>
+<label class="field__checkbox-label" for="{{include.name}}">{{include.label}}</label>
+{%- if include.helptext.size > 0 -%}
+<p class="field__helptext">{{-include.helptext-}}</p>
+{%- endif -%}

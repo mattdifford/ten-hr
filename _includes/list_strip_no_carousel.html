@@ -1,0 +1,43 @@
+{{blok._editable}}
+{% if include.item %}
+{% assign widget = include.item %}
+{% assign nested = true %}
+{%else %}
+{% assign widget = blok %}
+{% assign nested = false %}
+{%endif %}
+<div class="list-strip-no-carousel{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}">
+
+    <div class="container">
+        <div
+            class="list-strip-no-carousel__list">
+            {% for item in widget.items%}
+                <div class="list-strip-no-carousel__list-item" >
+                    <div class="list-strip-no-carousel__list-item-wrapper" {% if item.Bg_image.filename.size >0%} style="background-image: url('{{item.Bg_image.filename}}');"{% endif %}>
+                        {% if item.text.size > 0%}
+                            <div class="list-strip-no-carousel__list-item-content cms_content{% if item.link_text.size > 0%} list-strip-no-carousel__list-item-content--has-button{%endif%} {% if item.Bg_image.filename.size > 0%}center-content{% endif %}">
+                                <div>
+                                    <img src="{{item.image.filename}}" alt="{{item.image.alt}}"/>
+                                </div>
+                                {{item.text | markdownify }}
+                                {% if item.link.url.size > 0 %}
+                                    {% assign widget_link = item.link.url%}
+                                {% else %}
+                                    {% assign widget_link = item.link.cached_url %}
+                                {% endif %}
+                                {% assign first_char = widget_link | slice: 0 %}
+                                {%if item.link.linktype != "url" and first_char != "/" %}
+                                    {% capture widget_link%}/{{widget_link}}{%endcapture%}
+                                {% endif %}
+                                {% if item.link_text.size > 0%}
+                                    <a href="{{widget_link}}" class="list-strip-no-carousel__list-item-button">{{item.link_text}}</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {%endfor%}
+    </div>
+</div>
+</div>
+{% include style.html blok=widget%}

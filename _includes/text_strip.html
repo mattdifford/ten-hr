@@ -1,0 +1,24 @@
+{{blok._editable}}
+{%capture widget%}{{blok.widget[0].component}}{%endcapture%}
+<div class="{%if blok.bg_right == true%} header-image--align-right{%endif%} text-strip{% if widget == 'form'%} text-strip--form{%endif%}{%if blok.reverse_widgets == true %} text-strip--reverse{%endif%}{%if blok.bg_img.filename.size> 0%} text-strip--bg-image{%endif%}{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}{%if blok.widget.size>0%} text-strip--two-col{%else%} text-strip--one-col{%endif%}{%if blok.left_aligned == true%} text-strip--left-aligned{%endif%}{%if blok.no_repeat_bg == true%} text-strip--no-repeat{%endif%}"
+    {%if blok.bg_img.filename.size> 0%} style="background-image:
+    url('{{blok.bg_img.filename}}')"{%endif%}>
+    <div class="container">
+        <div class="text-strip__wrapper {% if blok.widget.size == 0 %} text-strip__wrapper-left {% endif %}">
+            <div class="text-strip__text cms_content">
+                {% assign text = blok.text | markdownify%}
+                {% assign text = text | replace: '<img src="', '<img class=" lazyload" src="/images/transparent.png"
+                    data-src="'| replace: 'a.storyblok.com/f/', 'img2.storyblok.com/filters:format(webp)/f/'%}
+                    {{text}}
+            </div>
+            {% if blok.widget.size > 0 %}
+            <div class="text-strip__widget scrollwatch">
+                
+                {%assign item = blok.widget[0] %}
+                {% include {{widget}}.html item=item %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% include style.html blok=blok%}

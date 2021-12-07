@@ -1,0 +1,13 @@
+{% if include.label %}
+{%assign label = include.label%}
+{%assign slug = include.name%}
+{% else %}
+{%assign label = include.name%}
+{%assign slug = include.slug%}
+{%endif%}
+<input type="text" id="{{slug}}" name="{{slug}}" required="{{-input.required-}}" class="field__input{% if include.non_floating_label == true%} field__input--non-floating{%endif%}"
+placeholder="{{-include.placeholder-}}" data-parsley-group="{{include.fieldset}}" minlength="5" maxlength="8">
+<label for={{slug}} class="field__label {% unless include.non_floating_label == true%} field__label--floating{%endunless%}">{{label}}</label>
+{%- if include.helptext.size > 0 -%}
+<p class="field__helptext">{{-include.helptext-}}</p>
+{%- endif -%}

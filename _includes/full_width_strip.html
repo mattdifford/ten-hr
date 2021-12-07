@@ -1,0 +1,10 @@
+{{blok._editable}}
+<div class="full-width-strip {%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%} full-width-strip{%if blok.is_dark_theme == true%}--dark{%else%}--light{%endif%}{%if blok.image.id%} full-width-strip--image"
+    style="background-image: url({{blok.image.filename}});" {%else%} full-width-strip--no-image"{%endif%}>
+    <div class="container">
+        <div class="full-width-strip__content {%if blok.text_left == true%}full-width-strip__content-left{%endif%}">
+            {{blok.text | markdownify }}
+        </div>
+    </div>
+</div>
+{% include style.html blok=blok%}

@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    {% if include.path %}
+    var sheet = document.querySelectorAll("link[href='/assets/css/{{include.path}}.css']");
+    if (sheet.length == 0){
+        if (document.createStyleSheet) {
+            document.createStyleSheet("/assets/css/{{include.path}}.css");
+        } else {
+            var stylesheet_{{include.path}} = document.createElement('link');
+            stylesheet_{{include.path}}.href = "/assets/css/{{include.path}}.css";
+            stylesheet_{{include.path}}.rel = 'stylesheet';
+            stylesheet_{{include.path}}.type = 'text/css';
+            document.getElementsByTagName('head')[0].appendChild(stylesheet_{{include.path}});
+        }
+    }
+    {% else %}
+    var sheet = document.querySelectorAll("link[href='/assets/css/{{include.blok.component}}.css']");
+    if (sheet.length == 0){
+        if (document.createStyleSheet) {
+            document.createStyleSheet("/assets/css/{{include.blok.component}}.css");
+        } else {
+            var stylesheet_{{include.blok.component}} = document.createElement('link');
+            stylesheet_{{include.blok.component}}.href = "/assets/css/{{include.blok.component}}.css";
+            stylesheet_{{include.blok.component}}.rel = 'stylesheet';
+            stylesheet_{{include.blok.component}}.type = 'text/css';
+            document.getElementsByTagName('head')[0].appendChild(stylesheet_{{include.blok.component}});
+        }
+    }
+    {% endif %}
+    </script>

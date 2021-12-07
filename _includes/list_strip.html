@@ -1,0 +1,86 @@
+{{blok._editable}}
+{% if include.item %}
+{% assign widget = include.item %}
+{% assign nested = true %}
+{%else %}
+{% assign widget = blok %}
+{% assign nested = false %}
+{%endif %}
+<div class="list-strip{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}">
+
+    <div class="container">
+        {% if widget.text.size > 0 %}
+        <div
+            class="list-strip__text-wrapper{% if widget.link_text.size > 0 %} list-strip__text-wrapper--button{%endif%}">
+            <div class="list-strip__text">
+                {% assign text = widget.text | markdownify%}
+                {% assign text = text | replace: '<img src="', '<img class=" lazyload" src="/images/transparent.png"
+                    data-src="'| replace: 'a.storyblok.com/f/', 'img2.storyblok.com/filters:format(webp)/f/'%}
+                    {{text}}
+            </div>
+            {% if widget.link.url.size > 0 %}
+            {% assign widget_link = widget.link.url%}
+            {% else %}
+            {% assign widget_link = widget.link.cached_url %}
+            {% endif %}
+            {% assign first_char = widget_link | slice: 0 %}
+            {%if widget.link.linktype != "url" and first_char != "/" %}
+                {% capture widget_link%}/{{widget_link}}{%endcapture%}
+            {% endif %}
+            {% if widget.link_text.size > 0 %}
+            <div class="list-strip__link">
+                <a class="button-secondary" href="{{widget_link}}">{{widget.link_text}}</a>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div
+            class="list-strip__list scrollwatch {% if nested == true%} list-strip__list--nested{%else%} list-strip__list--root{%endif%}{%if blok.mobile_carousel == true%} list-strip__list--mobile{%else%} list-strip__list--not-mobile{%endif%}">
+            {% for item in widget.items%}
+            {% if item.link.url.size > 0 %}
+            {% assign link = item.link.url%}
+            {% else %}
+            {% assign link = item.link.cached_url %}
+            {% endif %}
+            <div class="list-strip__list-item{%if item.highlight%} list-strip__list-item--highlighted{%endif%}">
+                {% if link.size > 0%}
+                {% assign first_char = link | slice: 0 %}
+                {%if item.link.linktype != "url" and first_char != "/" %}
+                {% capture link%}/{{link}}{%endcapture%}
+                {% endif %}
+                <a class="list-strip__list-item-wrapper" href="{{link}}" {%if item.link.linktype=="url"
+                    %}target="_blank" rel="external noopener" {%endif%}>
+                    {% else %}
+                    <div class="list-strip__list-item-wrapper">
+                        {%endif%}
+                        {% if item.image.filename.size > 0 %}
+                        {%-assign type = item.image.filename | slice: -3, 3-%}
+                        <div class="list-strip__list-item-image{% if item.image_banner == true%} list-strip__list-item-image--banner{%endif%}{%if type == "
+                            svg"%} list-strip__list-item-image--svg{%endif%}">
+                            {% include picture.html url=item.image.filename alt=item.image.alt %}
+                        </div>
+                        {% endif %}
+                        {% if item.text.size > 0%}
+                        <div
+                            class="list-strip__list-item-content cms_content{% if item.link_text.size > 0%} list-strip__list-item-content--has-button{%endif%}">
+                            {{item.text | markdownify }}
+                            {% if item.link_text.size > 0%}
+                            <span class="list-strip__list-item-button button">{{item.link_text}}</span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        {% if link.size > 0%}
+                </a>
+                {% else %}
+            </div>
+            {% endif %}
+        </div>
+        {%endfor%}
+    </div>
+</div>
+</div>
+{% include style.html blok=widget%}
+<script>
+    window.postJqueryScripts.push("/js/src/slick.min.js")
+    window.postJqueryScripts.push("/js/src/list_strip.js")
+</script>

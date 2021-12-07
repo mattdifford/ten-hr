@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+{%-include head.html seo=page.story.content.seo no_index=page.story.content.no_index-%}
+
+{% if page.story.content.is_advertorial == true %}
+<body class="body--advertorial">
+    {%- include header_advertorial.html header_text=page.story.content.header_cta header_button_text=page.story.content.header_cta_link_text link=page.story.content.advertorial_link -%}
+    {%- include advertorial-strip.html author=page.story.content.author sidebar_images=page.story.content.right_col_images title=page.story.content.title subtitle=page.story.content.subtitle text=page.story.content.content text_2=page.story.content.post_cta_content mid_content_cta=page.story.content.mid_content_cta date=page.story.content.date link=page.story.content.advertorial_link -%}
+    {% for blok in page.story.content.body %}
+    {% include {{blok.component}}.html blok=blok %}
+    {% endfor %}
+    {%- include advertorial-strip-bottom.html text=page.story.content.bottom_cta link=page.story.content.advertorial_link -%}
+    <script>
+        window.postJqueryScripts.push("/js/src/advertorial.js")
+    </script>
+    {% else %}
+    <body>
+    {%- include_cached header.html hide_nav=page.story.content.hide_nav -%}
+    <div class="root">
+
+        <div class="blog-post">
+            <div class="blog-post__header-image" style="background-image: url('{{page.story.content.image.filename}}')">
+            </div>
+            <div class="container">
+                <div class="blog-post__wrapper">
+                    <div class="blog-post__content cms_content">
+                        <h1>{{page.story.content.title}}</h1>
+                        <h4>By: {{page.story.content.author}}</h4>
+                        {% assign timestamp = page.story.content.date | date: "%s" %}
+                        <h4>Published on: {{timestamp | date: "%d/%m/%y"}}</h4>
+                        {{page.story.content.content | markdownify}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for blok in page.story.content.body %}
+        {% include {{blok.component}}.html blok=blok %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "headline": "{{page.story.content.title}}",
+          "image": "{{page.story.content.image.filename}}",
+          "datePublished": "{{timestamp | date: "%FT%T%z"}}",
+          "author": {
+            "@type": "Person",
+            "name": "{{page.story.content.author}}"
+          },
+          "articleBody": "{{page.story.content.content | markdownify | newline_to_br | strip_newlines | replace: '<br />', ' '| strip_html}}",
+          "articleSection": "{{page.story.content.category}}",
+          "wordCount": {{page.story.content.content | number_of_words }},
+          "isAccessibleForFree": true,
+          "url": "{{site.url}}/{{page.story.full_slug}}",
+          "publisher": {
+            "@type": "Organization",
+            "name": "{{site.title}}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{site.url}}/images/logo.png"
+            }
+          }
+        }
+        </script>
+    {%- include footer.html nav=page.global.data.story.content.footer_navigation-%}
+</body>
+{% include style.html blok=page.story.content%}
+{%- include foot.html -%}
+
+</html>

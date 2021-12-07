@@ -1,0 +1,7 @@
+{{blok._editable}}
+<div class="table-strip{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}">
+    <div class="container">
+        {% include table.html table=blok.table %}
+    </div>
+</div>
+{% include style.html blok=blok%}

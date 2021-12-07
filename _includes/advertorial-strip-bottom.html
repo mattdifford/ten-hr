@@ -1,0 +1,8 @@
+<div class="advertorial-bottom-strip">
+    <div class="container">
+        <div class="advertorial-bottom-strip__text">
+            {% assign current_month = "now" | date: "%B" %}
+            {{include.text | markdownify | replace: '[month]', current_month}}
+        </div>
+    </div>
+</div>

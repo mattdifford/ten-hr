@@ -1,0 +1,126 @@
+<script type="text/javascript">
+    function loadBridge(callback) {
+        const existingScript = document.getElementById("storyblokBridge");
+        if (!existingScript) {
+            const script = document.createElement("script");
+            script.src = "//app.storyblok.com/f/storyblok-v2-latest.js";
+            script.id = "storyblokBridge";
+            document.body.appendChild(script);
+            script.onload = () => {
+                callback();
+            };
+        } else {
+            callback();
+        }
+    }
+    if (window.location.search.includes('_storyblok')) {
+        loadBridge(() => {
+            const { StoryblokBridge, location } = window
+            const storyblokInstance = new StoryblokBridge()
+        })
+    }
+    if (document.createStyleSheet) {
+        document.createStyleSheet("/assets/css/default.css");
+    } else {
+        var stylesheet_default = document.createElement('link');
+        stylesheet_default.href = "/assets/css/default.css";
+        stylesheet_default.rel = 'stylesheet';
+        stylesheet_default.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(stylesheet_default);
+    }
+
+    if (window.is_form_page !== true) {
+        window.postJqueryScripts.push("/js/bundle.js");
+    }
+
+    var fonts = document.createElement('link');
+    fonts.rel = 'stylesheet';
+    {% if site.fonts_url.size > 0 %}
+    fonts.href = '{{site.fonts_url}}';
+    {% else %}
+    fonts.href = 'https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap';
+    {% endif %}
+    fonts.type = 'text/css';
+    var defer = document.getElementsByTagName('link')[0];
+    defer.parentNode.insertBefore(fonts, defer);
+
+    {% if site.fonts_url_google.size > 0 %}
+    var fontalt = document.createElement('link');
+    fontalt.setAttribute('rel', 'stylesheet');
+    fontalt.setAttribute('type', 'text/css');
+    fontalt.setAttribute('href', '{{site.fonts_url_google}}');
+    document.head.appendChild(fontalt);
+    {% endif %}
+
+    {% if site.fonts_url_google_alt.size > 0 %}
+    var fontalt = document.createElement('link');
+    fontalt.setAttribute('rel', 'stylesheet');
+    fontalt.setAttribute('type', 'text/css');
+    fontalt.setAttribute('href', '{{site.fonts_url_google_alt}}');
+    document.head.appendChild(fontalt);
+    {% endif %}
+
+
+    function loadScript(src, callback, text) {
+        if (typeof src === "object") {
+            callback = src[1];
+            src = src[0]
+        }
+        let script = document.createElement('script');
+        script.async = false;
+        if (src.charAt(0) == '/' || src.substring(0, 4) === 'http') {
+            script.src = src;
+        } else {
+            script.defer = true;
+            script.text = src;
+        }
+        if (typeof callback != "undefined" && callback != false) {
+            if (script.readyState) {  //IE
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" ||
+                        script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        if (typeof callback !== "function") {
+                            loadScript(callback);
+                        } else {
+                            callback();
+                        }
+                    }
+                };
+            } else {  //Others
+                script.onload = function () {
+                    if (typeof callback !== "function") {
+                        loadScript(callback);
+                    } else {
+                        callback();
+                    }
+                };
+            }
+        }
+        document.head.append(script);
+    }
+    loadScript("/js/src/jquery.min.js", loadPostJqueryScripts);
+
+    function loadPostJqueryScripts() {
+        jQuery.event.special.touchstart = {
+            setup: function (_, ns, handle) {
+                this.addEventListener("touchstart", handle, { passive: true });
+            }
+        };
+        var scripts = window.postJqueryScripts;
+        var uniq = scripts.filter(onlyUnique);
+        uniq.forEach(function (item) {
+            loadScript(item)
+        });
+    }
+
+
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+    }
+</script>
+<noscript>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/default.css">
+    <link rel="stylesheet" href="{{layout_css}}">
+</noscript>

@@ -1,0 +1,485 @@
+items:
+  - category: Life Insurance
+    pre_text: >
+      # Compare <span>Life Insurance</span> Quotes
+
+      Fill in your details and get free advice from an expert today!
+    ckm_key: cAP278mOM8
+    ckm_campaign_id: 38
+    form_fields:
+      - helptext: Make a selection below
+        label: Are you male or female?
+        name: gender
+        options:
+          - name: "Male"
+          - name: "Female"
+        required: true
+        type: radio
+      - helptext: Your details fieldset
+        name: Your fieldset
+        required: false
+        type: fieldset
+      - label: What is your date of birth?
+        name: dob
+        required: true
+        type: date
+      - helptext: Personal details fieldset
+        name: Personal details fieldset
+        required: false
+        type: fieldset
+      - label: First name
+        name: first_name
+        required: true
+        type: string
+      - label: Last name
+        name: last_name
+        required: true
+        type: string
+      - label: Phone number
+        name: phone_number
+        required: true
+        type: tel
+      - label: Email address
+        name: email_address
+        required: true
+        type: email
+      - label: Postcode
+        name: postcode
+        required: true
+        type: string
+    submit_text: Submit
+    title: Life Insurance
+    disclaimer: >
+
+      By clicking submit you agree for your details to be passed to an FCA authorised intermediary who will contact you by phone and email. You also agree to the following [Privacy Policy](/privacy){:target="blank"}
+  - category: Over 50s
+    pre_text: Compare <span>Over 50s cover</span> Quotes
+    form_fields:
+      - helptext: Make a selection below
+        label: What would you like to cover?
+        name: cover_type
+        options:
+          - name: My family
+          - name: My mortgage
+          - name: Family & mortgage
+          - name: Not sure
+        required: true
+        type: radio
+      - helptext: Smoking fieldset
+        name: Smoking fieldset
+        required: false
+        type: fieldset
+      - helptext: Make a selection below
+        label: Have you smoked in the last 12 months?
+        name: smoked
+        options:
+          - name: "Yes"
+          - name: "No"
+        required: true
+        type: radio
+      - helptext: Your details fieldset
+        name: Your fieldset
+        required: false
+        type: fieldset
+      - label: What is your date of birth?
+        name: dob
+        placeholder: DD/MM/YYYY
+        required: true
+        type: date
+      - label: Are you male or female?
+        name: gender
+        options:
+          - name: Male
+          - name: Female
+        required: true
+        type: radio
+    submit_text: Submit
+    title: Over 50s life insurance
+  - category: Funeral Plans
+    title: Funeral Plans
+    ckm_key: CXbAreWn684
+    ckm_campaign_id: 16
+    usps:
+      - title: Lock in today's prices
+      - title: 100% free quote with no obligation
+        priority: true
+      - title: No medicals - acceptance guaranteed
+    pre_text: >
+      # Compare <span>Funeral Plan</span> Quotes For Free
+      
+      
+      Guaranteed Acceptance - No Medicals
+    pre_form_text: Your trusted way to compare quality funeral plans
+    form_fields:
+      - helptext: Funeral details fieldset
+        name: Funeral details fieldset
+        required: false
+        type: fieldset
+      - label: What type of funeral would you like?
+        name: funeral_type
+        required: true
+        type: radio
+        options:
+          - name: Burial
+          - name: Cremation
+      - helptext: Your details fieldset
+        name: Your fieldset
+        required: false
+        type: fieldset
+      - label: Postcode
+        name: postcode
+        required: true
+        type: string
+        autocomplete: postal-code
+      - helptext: Name fieldset
+        name: Name fieldset
+        required: false
+        type: fieldset
+      - label: First name
+        name: first_name
+        required: true
+        type: string
+      - label: Last name
+        name: last_name
+        required: true
+        type: string
+      - label: How old are you?
+        name: age
+        required: true
+        type: radio
+        options:
+          - name: 50 - 60
+          - name: 61 - 70
+          - name: 70+
+      - helptext: Personal details fieldset
+        name: Personal details fieldset
+        required: false
+        type: fieldset
+      - label: Email address
+        name: email_address
+        required: true
+        type: email
+      - label: Phone number
+        name: phone_number
+        required: true
+        type: tel
+    submit_text: Get my Free Quote
+    disclaimer: >
+      By clicking 'Get my Free Quote' I agree to the following [Privacy Policy](/privacy), and that I would like to be contacted by a consultant. Calls may be recorded for quality and training.
+  - category: Equity Release
+    ckm_key: rRAf9J5RVU
+    ckm_campaign_id: 14
+    usps:
+      - title: Privacy guaranteed
+      - title: No obligation to go ahead
+        priority: true
+      - title: No credit checks
+    pre_text: >
+      # Compare <span>Equity Release</span> Quotes
+
+      Calculate your estimate & get free advice from an expert
+    form_fields:
+      - helptext: Make a selection below
+        label: How do you want to use the money?
+        name: money_usage
+        options:
+          - name: Home improvement
+          - name: Family
+          - name: Retirement
+          - name: Other
+          - name: Not sure
+        required: true
+        type: radio
+      - label: How old are you?
+        helptext: All homeowners must be over 55 in order to release equity
+        name: age
+        type: select
+        store: true
+        options:
+          - name: 55
+          - name: 56
+          - name: 57
+          - name: 58
+          - name: 59
+          - name: 60
+          - name: 61
+          - name: 62
+          - name: 63
+          - name: 64
+          - name: 65
+          - name: 66
+          - name: 67
+          - name: 68
+          - name: 69
+          - name: 70
+          - name: 71
+          - name: 72
+          - name: 73
+          - name: 74
+          - name: 75
+          - name: 76
+          - name: 77
+          - name: 78
+          - name: 79
+          - name: 80
+          - name: 81
+          - name: 82
+          - name: 83
+          - name: 84
+          - name: 85+
+      - helptext: Postcode fieldset
+        name: Postcode fieldset
+        required: false
+        type: fieldset
+      - label: What is your postcode?
+        name: postode
+        required: true
+        type: postcode_lookup
+      - helptext: Property details fieldset
+        name: Property fieldset
+        required: false
+        type: fieldset
+      - label: What is the value of your property?
+        name: property_value
+        required: true
+        type: house_price
+        store: true
+        min: 70000
+      - label: What is the outstanding mortgage value of your property?
+        name: mortgage_balance
+        required: true
+        type: house_price
+      - helptext: Personal details fieldset
+        name: Personal details fieldset
+        required: false
+        type: fieldset
+      - label: First name
+        name: first_name
+        required: true
+        type: string
+      - label: Last name
+        name: last_name
+        required: true
+        type: string
+      - label: Phone number
+        name: phone_number
+        required: true
+        type: tel
+      - label: Email address
+        name: email_address
+        required: true
+        type: email
+
+    submit_text: Get Free Advice
+    title: Equity Release
+  - category: Secured Loans
+    pre_text: Compare <span>Secured Loan</span> Offers
+    form_fields:
+      - label: Are you a homeowner?
+        name: homeowner
+        options:
+          - name: "Yes"
+          - name: "No"
+        required: true
+        type: radio
+      - helptext: "Choose from £10,000 to £50,000+"
+        label: How much would you like to borrow?
+        name: borrow_money
+        options:
+          - name: "£10,000 - £15,000"
+          - name: "£15,000 - £25,000"
+          - name: "£25,000 - £50,000"
+          - name: "£50,000+"
+        required: true
+        type: radio
+      - name: Purpose fieldset
+        required: false
+        type: fieldset
+      - helptext: You can select more than one option
+        label: What would you like to borrow for?
+        name: borrow_type
+        options:
+          - name: Debt consolidation
+          - name: Home improvements
+          - name: Other
+        required: true
+        type: multiple_choice
+      - helptext: Personal details fieldset
+        name: Personal details fieldset
+        required: false
+        type: fieldset
+      - label: First name
+        name: first_name
+        required: true
+        type: string
+      - label: Last name
+        name: last_name
+        required: true
+        type: string
+      - label: Phone number
+        name: phone_number
+        required: true
+        type: tel
+      - label: Email address
+        name: email_address
+        required: true
+        type: email
+    submit_text: Submit
+    title: Secured Loans
+  - category: Current Accounts
+    pre_text: >
+      # Compare <span>current accounts</span>
+    form_fields:
+      - label: What is your annual income?
+        name: income
+        options:
+          - name: "£10,000 - £15,000"
+          - name: "£15,000 - £25,000"
+          - name: "£25,000 - £50,000"
+          - name: "£50,000+"
+        required: true
+        type: radio
+      - name: Purpose fieldset
+        required: false
+        type: fieldset
+      - label: What do you want to use the account for?
+        name: account_usage
+        options:
+          - name: Savings
+          - name: Day-to-day spending
+          - name: Other
+          - name: Not sure
+        required: true
+        type: radio
+      - helptext: Personal details fieldset
+        name: Personal details fieldset
+        required: false
+        type: fieldset
+      - label: First name
+        name: first_name
+        required: true
+        type: string
+      - label: Last name
+        name: last_name
+        required: true
+        type: string
+      - label: Phone number
+        name: phone_number
+        required: true
+        type: tel
+      - label: Email address
+        name: email_address
+        required: true
+        type: email
+    submit_text: Apply now
+    title: Current Accounts
+  - category: Funeral Plans - SMS
+    title: Funeral Plans - SMS
+    ckm_key: d0Tl3pmcsiw
+    ckm_campaign_id: 49
+    usps:
+      - title: Lock in today's prices
+      - title: 100% free quote with no obligation
+        priority: true
+      - title: No medicals - acceptance guaranteed
+    pre_text: >
+      # Compare <span>Funeral Plan</span> Quotes For Free
+
+
+      Guaranteed Acceptance - No Medicals
+    pre_form_text: Your trusted way to compare quality funeral plans
+    form_fields:
+      - helptext: Funeral details fieldset
+        name: Funeral details fieldset
+        required: false
+        type: fieldset
+      - label: What type of funeral would you like?
+        name: funeral_type
+        required: true
+        type: radio
+        options:
+          - name: Burial
+          - name: Cremation
+      - helptext: Plan details fieldset
+        name: Plan details fieldset
+        required: false
+        type: fieldset
+      - label: What type of plan would you like?
+        name: plan_type
+        required: true
+        type: radio
+        options:
+          - name: Single
+          - name: Joint
+      - helptext: Your details fieldset
+        name: Your fieldset
+        required: false
+        type: fieldset
+      - label: What is your date of birth?
+        name: dob
+        required: true
+        type: date
+        min: 49
+      - helptext: Name fieldset
+        name: Name fieldset
+        required: false
+        type: fieldset
+      - label: First name
+        name: first_name
+        required: true
+        type: string
+      - label: Last name
+        name: last_name
+        required: true
+        type: string
+      - helptext: Personal details fieldset
+        name: Personal details fieldset
+        required: false
+        type: fieldset
+      - label: Email address
+        name: email_address
+        required: true
+        type: email
+      - label: Mobile number
+        name: phone_number
+        required: true
+        type: tel_mobile
+    submit_text: Get my Free Quote
+    disclaimer: >
+      By clicking 'Get my Free Quote' I agree to the following [Privacy Policy](/privacy), and that I would like to be contacted by a consultant. Calls may be recorded for quality and training.
+  - category: Mortgages
+    ckm_key: Vsi0oe1u9yY
+    ckm_campaign_id: 47
+    confirmation_page: /personal-finance/mortgages/thankyou
+    pre_text: >
+      ### Divorcing in later life?
+
+      #### Are your equity release needs a little more complicated?
+
+      
+      Mortgage Capacity Reports (MCR) can be extremely useful when finances are being disputed. For example divorcing parties who are finding it difficult to decide whether to pursue other matrimonial assets. The reports often have a direct impact on any settlement ordered or agreed.
+
+      
+      This helps ensure all parties are aware how financial decisions made now, may affect their ability to get a mortgage in the future.
+      
+      
+      **Please complete the form and we'll have our Mortgage Capacity Report experts get in touch&hellip;**
+    form_fields:
+      - label: First name
+        name: first_name
+        required: true
+        type: string
+      - label: Last name
+        name: last_name
+        required: true
+        type: string
+      - label: Phone number
+        name: phone_number
+        required: true
+        type: tel
+      - label: Email address
+        name: email_address
+        required: true
+        type: email
+    submit_text: Apply now
+    title: Mortgages

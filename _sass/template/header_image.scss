@@ -1,0 +1,108 @@
+.header-image {
+  padding: 40px 0;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+  &--no-repeat {
+    background-repeat: no-repeat;
+  }
+  &--align-right {
+    background-position: right;
+  }
+  &.bg--primary {
+    .header-image {
+      &__content {
+        h1 {
+          color: inherit;
+        }
+        p {
+          color: inherit;
+        }
+        a{
+          @include button-secondary();
+        }
+      }
+    }
+  }
+  &.bg--secondary {
+    .header-image {
+      &__content {
+        h1 {
+          color: #fff;
+        }
+        p {
+          color: inherit;
+        }
+        a{
+          @include button-secondary();
+        }
+      }
+    }
+  }
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__content {
+    flex: 0 1 60%;
+    padding-right: 200px;
+    h2 {
+      margin: 0 0 25px;
+      strong {
+        font-weight: var(--font-weight-extra-bold);
+      }
+    }
+    h3 {
+      font-size: 24px;
+      font-weight: var(--font-weight-bold);
+    }
+    p {
+      color: var(--colour-text-secondary);
+      font-weight: var(--font-weight-extra-bold);
+    }
+    a {
+      @include button();
+    }
+    em{
+      font-style:normal;
+      color:var( --colour-text-tertiary);
+    }
+  }
+  &__image {
+    flex: 0 1 40%;
+    &--full-bleed {
+      @include in_size($sm) {
+        position: absolute;
+        right: 0;
+        width: 40%;
+        top: 0;
+        height: 100%;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: scale-down;
+        }
+      }
+    }
+  }
+  @include in_size($md) {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+  }
+  @include in_size($xs) {
+    &__wrapper {
+      flex-wrap: wrap;
+    }
+    &__content {
+      order: 2;
+      flex: 0 1 100%;
+      padding: 25px 0 0;
+    }
+    &__image {
+      order: 1;
+      flex: 0 1 100%;
+    }
+  }
+}

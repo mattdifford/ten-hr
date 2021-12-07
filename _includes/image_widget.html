@@ -1,0 +1,6 @@
+{{blok._editable}}
+<div class="image-widget{%if blok.widget[0].image_full_bleed == true%} image-widget--full-bleed{%endif%}{%if blok.widget[0].flat == true%} image-widget--flat{%endif%}">
+    {% assign url = blok.widget[0].image.filename %}
+    {% assign alt = blok.widget[0].image.alt %}
+    {% include picture.html url=url alt=alt %}
+</div>

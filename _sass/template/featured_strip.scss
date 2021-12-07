@@ -1,0 +1,67 @@
+.featured-strip {
+    position: relative;
+  
+    overflow: hidden;
+    @include in_size($xs) {
+      transform: none;
+      margin-bottom: 0;
+    }
+    &__wrapper {
+      display: flex;
+    }
+    &__title {
+      padding: 0 30px;
+      position: relative;
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      font-size: 30px;
+    }
+    &__list {
+      padding: 0 50px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      @include in_size($md) {
+        flex: 0 1 100%;
+        overflow: hidden;
+      }
+      picture {
+        padding: 15px 25px;
+      }
+      img {
+        max-height: 50px;
+      }
+    }
+    @include in_size($xs) {
+      &__wrapper {
+        flex-wrap: wrap;
+        padding-bottom: 15px;
+      }
+      &__title,
+      &__list {
+        flex: 1 0 100%;
+        padding: 0;
+      }
+      &__list {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        picture {
+          flex: 0 0 auto;
+        }
+      }
+      &__title {
+        background: none;
+        h3 {
+          margin: 10px 0;
+          font-size: 18px;
+          text-align: center;
+          width: 100%;
+        }
+        &:before,
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }

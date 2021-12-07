@@ -1,0 +1,37 @@
+.full-width-strip {
+  text-align: center;
+  position: relative;
+  padding: 40px 0;
+  background-position: center center;
+  background-size: cover;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+  &__content {
+    max-width: 60%;
+    margin: 0 auto;
+    @include content_styles;
+    ol{
+      display:inline-block;
+      text-align:left;
+    }
+    &-left{
+      max-width: none;
+      text-align: left;
+    }
+
+    a {
+      @include button();
+    }
+  }
+  @include in_size($xs) {
+    padding: 30px 0;
+    &__content {
+      max-width: 100%;
+    }
+  }
+}

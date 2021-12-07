@@ -1,0 +1,15 @@
+{{blok._editable}}
+<div class="header-image{%if blok.no_repeat_bg == true%} header-image--no-repeat{%endif%}{%if blok.bg_right == true%} header-image--align-right{%endif%}{%if blok.layout == " centre"%} header-image--centre{%endif%}{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}"{%if blok.bg_img.filename.size> 0%} style="background-image:
+    url('{{blok.bg_img.filename}}')"{%endif%}>
+    <div class="container">
+        <div class="header-image__wrapper">
+            <div class="header-image__content">
+                {{blok.content | markdownify}}
+            </div>
+            <div class="header-image__image{% if blok.image_full_bleed %} header-image__image--full-bleed{%endif%}">
+                {% include picture.html url=blok.image.filename alt=blok.image.alt lazyload=false%}
+            </div>
+        </div>
+    </div>
+</div>
+{% include style.html blok=blok%}

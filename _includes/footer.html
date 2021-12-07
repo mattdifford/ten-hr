@@ -1,0 +1,87 @@
+<footer class="footer hidden-on-load">
+    <div class="container">
+        <div class="footer__wrapper">
+            <div class="footer__col footer__col--logo">
+                <div class="footer__logo">
+                    {%-assign type = site.logo_footer | slice: -3, 3-%}
+                    {% if type == "svg" %}
+                    <img data-src="{{site.logo_footer}}" alt="{{site.title}}" src="/images/transparent.png"
+                        class="lazyload" />
+                    {% else %}
+                    {%- include picture.html url=site.logo_footer alt=site.title type="png"-%}
+                    {% endif %}
+                </div>
+                {% unless site.hide_address == true%}
+                <p class="footer__logo-text">{{site.title}}<br>
+                    20-22 The Mall<br>
+                    Clifton Village<br>
+                    Bristol<br>
+                    BS8 4DR<br>
+                </p>
+                {% endunless %}
+            </div>
+            <div class="footer__col footer__col--nav">
+                {%- for item in include.nav -%}
+                {%- if item.link.url.size > 0 -%}
+                {%- assign link = item.link.url -%}
+                {%- else -%}
+                {%- assign link = item.link.cached_url -%}
+                {%- endif -%}
+                {%- assign first_char = link | slice: 0 -%}
+                {%- if item.link.linktype != "url" and first_char != "/" -%}
+                {%- capture link -%}/{{link}}{%- endcapture -%}
+                {%- endif -%}
+                {%- if link == "/home" -%}
+                {%- assign link = "/" -%}
+                {%- endif -%}
+                {%- if forloop.first == true -%}
+                <div class="footer__col">
+                    {%- elsif item.is_top_level == true and forloop.first == false -%}
+                </div>
+                <div class="footer__col">
+                    {%- endif -%}
+                    <a href="{{link-}}" {%-if
+                        item.is_top_level==true-%}class="footer__nav-link footer__nav-link--header" {%-else-%}
+                        class="footer__nav-link" {%-endif-%}>
+                        {{- item.link_text -}}
+                    </a>
+                    {%- if forloop.last == true -%}
+                </div>
+                {%-endif-%}
+                {%- endfor -%}
+                <div class="footer__col">
+                    <!-- OneTrust Cookies Settings button start -->
+                    <button id="ot-sdk-btn" class="ot-sdk-show-settings footer__nav-link footer__nav-link--header">Cookie Settings</button>
+                    <!-- OneTrust Cookies Settings button end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="container">
+            <div class="footer__wrapper">
+                <div class="footer__col footer__col--copyright">
+                    <p>{{site.title}} Copyright &copy; 2014-{{ "now" | date: "%Y" }} | LeadStream (Jersey) Ltd. All Rights Reserved. LeadStream (Jersey) Limited is an appointed representative of LeadStream (UK) Ltd which is authorised and regulated by the Financial Conduct Authority - 783638. Company Number: 117435. Licenced on the Data Protection Register - Licence No 50186. View our <a href="/privacy-policy">Data Protection Policy.</a></p>
+
+                    <p>We make every effort to ensure you receive quotes from the whole of the market however sometimes we may introduce you to a broker who works with a limited number of providers. We are happy to introduce you to an alternative broker upon request.</p>
+                    
+                    <p>The information on this website is targeted at consumers in the UK. This website is free to you but to operate this website we may receive a fee from the provider or intermediary we refer you to. Calls to you and telephone transfers to any provider or intermediary we refer you to may be recorded for quality and training purposes. The content of this website does not constitute financial advice and is provided for general information purposes only. We take care to make sure that the information and material is accurate and up-to-date. However, errors and omissions may occur, and you should not take the accuracy of the information and material for granted or rely upon it as a statement or representation of fact. Some products are only available from selected providers and intermediaries.</p>
+                </div>
+                <div class="footer__col footer__col--social">
+                    {% if site.facebook_url.size > 0 %}
+                    <a class="footer__social" title="Facebook" href="{{site.facebook_url | absolute_url}}"
+                        target="_blank" rel="external noopener"><span class="icon-facebook"></span></a>
+                    {% endif %}
+                    {% if site.twitter_url.size > 0 %}
+                    <a class="footer__social" title="Twitter" href="{{site.twitter_url | absolute_url}}" target="_blank"
+                        rel="external noopener"><span class="icon-twitter bg"></span></a>
+                    {% endif %}
+                    {% if site.instagram_url.size > 0 %}
+                    <a class="footer__social" title="Instagram" href="{{site.instagram_url | absolute_url}}"
+                        target="_blank" rel="external noopener"><span class="icon-instagram bg"></span></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

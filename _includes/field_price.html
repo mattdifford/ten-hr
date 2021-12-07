@@ -1,0 +1,24 @@
+{% if include.label %}
+{%assign label = include.label%}
+{%assign slug = include.name%}
+{% else %}
+{%assign label = include.name%}
+{%assign slug = include.slug%}
+{%endif%}
+{% if include.type %}
+{%assign field_type = include.type%}
+{%else%}
+{%assign field_type = "text"%}
+{%endif%}
+<div class="form__input-wrapper"><input type="{{field_type}}" name="{{slug}}" required="{{-input.required-}}"
+        id="{{slug}}" class="field__input field__input--price{% if include.non_floating_label == true%} field__input--non-floating{%endif%}" placeholder="{{-include.placeholder-}}"
+        data-parsley-group="{{include.fieldset}}">
+    <label for={{slug}} class="field__label {% unless include.non_floating_label == true%} field__label--floating{%endunless%}">{{label}}</label>
+    <i class="price-icon">£</i>
+</div>
+{%- if include.helptext.size > 0 -%}
+<p class="field__helptext">{{-include.helptext-}}</p>
+{%- endif -%}
+<script>
+    window.postJqueryScripts.push('/js/src/field_price.js');
+</script>
