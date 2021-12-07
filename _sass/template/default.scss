@@ -171,7 +171,6 @@ body.nav-open {
 .header {
   position: relative;
   z-index: 2;
-  background: var(--header-bg, #fff);
   &__wrapper {
     display: flex;
     align-items: center;

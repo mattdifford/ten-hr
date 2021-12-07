@@ -1,9 +1,10 @@
-$colour-primary: #1270b7;
+$colour-primary: #F9B641;
 $colour-primary-lighten: lighten($colour-primary, 10%);
 $colour-primary-darken: darken($colour-primary, 5%);
-$colour-secondary: #e9501c;
+$colour-secondary: #116973;
 $colour-secondary-lighten: lighten($colour-secondary, 10%);
-$colour-light-blue: #E9F1FD;
+$colour-tertiary: #F0836C;
+$colour-tertiary-lighten: lighten($colour-tertiary, 10%);
 $colour-contrast-orange: #d44400;
 $colour-contrast-orange-lighten: lighten($colour-contrast-orange, 10%);
 $colour-accept: #218739;
@@ -13,10 +14,11 @@ $colour-error-lighten: lighten($colour-error, 10%);
 html {
   --colour-primary: #{$colour-primary};
   --colour-secondary: #{$colour-secondary};
+  --colour-tertiary: #{$colour-tertiary};
   --colour-primary-lighten: #{$colour-primary-lighten};
   --colour-primary-darken: #{$colour-primary-darken};
   --colour-secondary-lighten:  #{$colour-secondary-lighten};
-  --colour-light-blue: #{$colour-light-blue};
+  --colour-tertiary-lighten:  #{$colour-tertiary-lighten};
   --colour-text-primary: #1e2f60;
   --colour-text-secondary: #52526a;
   --colour-secondary-text: var(--colour-text-primary);
@@ -38,8 +40,8 @@ html {
 
   --box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.05);
 
-  --font-primary: "Nunito Sans", sans-serif;
-  --font-secondary: var(--font-primary);
+  --font-primary: futura-pt, sans-serif;
+  --font-secondary: futura-pt-bold, sans-serif;
   --font-tertiary: var(--font-secondary);
 
   --body-font-weight: 400;
@@ -97,20 +99,6 @@ html {
   --list-item-highlight-button-bg: var(--colour-secondary);
   --list-item-highlight-button-hover-bg: var(--colour-secondary-lighten);
   --list-dot-active: var(--colour-secondary);
-}
-
-.header--has-nav {
-  --header-nav-text: var(--colour-text-primary);
-  --header-nav-text-hover: var(--colour-text-secondary);
-  --header-sub-nav-bg: var(--colour-primary);
-  --header-sub-nav-hover-bg: var(--colour-secondary);
-  --header-sub-nav-text: #fff;
-  --header-sub-nav-border: var(--colour-border);
-  --header-menu-icon-bg: var(--colour-primary);
-  --header-mobile-nav-bg: var(--colour-primary);
-  --header-mobile-nav-text: #fff;
-  --header-mobile-nav-border: #fff;
-  --header-mobile-nav-inner-bg: var(--colour-secondary);
 }
 
 .form {

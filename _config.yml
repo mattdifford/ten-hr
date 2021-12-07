@@ -75,16 +75,11 @@ utm_fields:
   - affsubid2
   - affsubid3
 
-portal_api_url: https://zuruls.azure-api.net/
 
-default_supplier_key: dc7c2fab-abff-499b-9603-11336d55553d
-default_supplier_id: 249
-
-title: Tax Reclaimed
-url: "https://www.taxreclaimed.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
-description: For life insurance, equity release and more, find the financial help you need in a matter of minutes.
-logo: /images/logo.png
-logo_footer: /images/logo-white.png
+title: Ten HR
+url: "https://www.tenhr.co.uk" # the base hostname & protocol for your site, e.g. http://example.com
+logo: /images/logo.svg
+logo_footer: /images/logo.svg
 
 twitter_url:
 facebook_url: https://www.facebook.com/taxreclaimed
@@ -92,12 +87,9 @@ instagram_url:
 
 # Settings for your Storyblok space
 storyblok:
-  token: "EcLhw8tBkVHm2Wz27h2EPAtt"
+  token: "n74LA8Xhrbv3hSXovXYSbQtt"
   # Can be either `draft` or `published`
   version: draft
 
-WebsiteId: 10
 
-hide_address: true
-
-
+fonts_url: https://use.typekit.net/lwf0ikb.css

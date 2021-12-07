@@ -5,13 +5,11 @@
     {% assign alt = site.title%}
     {% endif %}
     {% if include.url contains "storyblok.com" %}
-        {% assign image_service_url = include.url | replace: 'a.storyblok.com/f/', 'img2.storyblok.com/filters:format(webp)/f/'%}
+        {% assign image_service_url = include.url | append: "/m/"%}
         {% if include.lazyload == false %}
-            <source srcset="{{image_service_url}}" type="image/webp">
-            <img src="{{include.url}}" alt="{{alt}}">
+            <img src="{{image_service_url}}" alt="{{alt}}">
         {% else %}
-        <source data-srcset="{{image_service_url}}" type="image/webp">
-        <img data-src="{{include.url}}" alt="{{alt}}" class="lazyload" src="/images/transparent.png">
+        <img data-src="{{image_service_url}}" alt="{{alt}}" class="lazyload" src="/images/transparent.png">
         {% endif %}
     {% else %}
         {%if include.type %}
