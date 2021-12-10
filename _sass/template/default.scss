@@ -19,7 +19,7 @@ img {
   max-width: 100%;
 }
 html {
-  font-family: var(--font-primary);
+  font-family: var(--font-tertiary);
   font-weight: var(--body-font-weight);
   font-size: var(--body-font-size);
   color: var(--colour-text-secondary);
@@ -44,8 +44,7 @@ fieldset {
 
 h2,
 h4,
-h5,
-h6 {
+h5 {
   font-weight: var(--font-weight-extra-bold);
   line-height: 1.1;
   color: var(--colour-text-primary);
@@ -56,8 +55,13 @@ h6 {
     }
   }
 }
-h1 {
+h6 {
   font-family: var(--font-tertiary);
+  font-weight: 700;
+  margin: 0;
+}
+h1 {
+  font-family: var(--font-secondary);
   font-weight: var(--font-weight-extra-bold);
   line-height: 1.1;
   color: var(--colour-text-primary);
@@ -172,6 +176,7 @@ body.nav-open {
     &-item {
       a {
         color: var(--colour-primary);
+        text-transform: lowercase;
       }
     }
   }

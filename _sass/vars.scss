@@ -19,7 +19,7 @@ html {
   --colour-primary-darken: #{$colour-primary-darken};
   --colour-secondary-lighten:  #{$colour-secondary-lighten};
   --colour-tertiary-lighten:  #{$colour-tertiary-lighten};
-  --colour-text-primary: #1e2f60;
+  --colour-text-primary: #105164;
   --colour-text-secondary: #52526a;
   --colour-secondary-text: var(--colour-text-primary);
   --button-text: #fff;
@@ -42,7 +42,7 @@ html {
 
   --font-primary: futura-pt, sans-serif;
   --font-secondary: futura-pt-bold, sans-serif;
-  --font-tertiary: var(--font-secondary);
+  --font-tertiary: montserrat, sans-serif;
 
   --body-font-weight: 400;
   --body-font-size: 18px;

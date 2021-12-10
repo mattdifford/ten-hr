@@ -16,7 +16,7 @@ $(document).ready(function () {
     var url_string = window.location.search;
     $('a').each(function () {
         var href = $(this).attr("href");
-        if (href.indexOf("?") > -1) {
+        if (href && href.indexOf("?") > -1) {
             $(this).attr("href", href + url_string.replace("?", "&"));
         } else {
             $(this).attr("href", href + url_string);
