@@ -1,24 +1,22 @@
 {{blok._editable}}
-{%capture widget%}{{blok.widget[0].component}}{%endcapture%}
-<div class="{%if blok.bg_right == true%} header-image--align-right{%endif%} text-strip{% if widget == 'form'%} text-strip--form{%endif%}{%if blok.reverse_widgets == true %} text-strip--reverse{%endif%}{%if blok.bg_img.filename.size> 0%} text-strip--bg-image{%endif%}{%if blok.colour_scheme.size > 0 %} bg--{{blok.colour_scheme}}{%endif%}{%if blok.widget.size>0%} text-strip--two-col{%else%} text-strip--one-col{%endif%}{%if blok.left_aligned == true%} text-strip--left-aligned{%endif%}{%if blok.no_repeat_bg == true%} text-strip--no-repeat{%endif%}"
-    {%if blok.bg_img.filename.size> 0%} style="background-image:
-    url('{{blok.bg_img.filename}}')"{%endif%}>
+<div class="text-strip {% if blok.bg_img.filename.size> 0 %}text-strip--bg-image{% endif %}" {% if blok.bg_img.filename.size> 0 %} style="background-image: url('{{blok.bg_img.filename}}')" {% endif %}>
     <div class="container">
-        <div class="text-strip__wrapper {% if blok.widget.size == 0 %} text-strip__wrapper-left {% endif %}">
-            <div class="text-strip__text cms_content">
-                {% assign text = blok.text | markdownify%}
-                {% assign text = text | replace: '<img src="', '<img class=" lazyload" src="/images/transparent.png"
-                    data-src="'| replace: 'a.storyblok.com/f/', 'img2.storyblok.com/filters:format(webp)/f/'%}
-                    {{text}}
+        <div class="text-strip__wrapper">
+            <div class="text-strip__text text-strip__text-left cms_content">
+                {% assign text_left = blok.text_left | markdownify %}
+                {% assign text_left = text_left | replace: '<img src="', '<img class=" lazyload" src="/images/transparent.png"
+                    data-src="' | replace: '.png"', '.png/m/"' | replace: '.jpg"', '.jpg/m/"' | replace: '.svg"', '.svg/m/"' %}
+                {{text_left}}
             </div>
-            {% if blok.widget.size > 0 %}
-            <div class="text-strip__widget scrollwatch">
-                
-                {%assign item = blok.widget[0] %}
-                {% include {{widget}}.html item=item %}
-            </div>
+            {% if blok.text_right.size > 0 %}
+                <div class="text-strip__text text-strip__text-right cms_content">
+                    {% assign text_right = blok.text_right | markdownify %}
+                    {% assign text_right = text_right | replace: '<img src="', '<img class=" lazyload" src="/images/transparent.png"
+                    data-src="' | replace: '.png"', '.png/m/"' | replace: '.jpg"', '.jpg/m/"' | replace: '.svg"', '.svg/m/"' %}
+                    {{text_right}}
+                </div>
             {% endif %}
         </div>
     </div>
 </div>
-{% include style.html blok=blok%}
+{% include style.html blok=blok %}

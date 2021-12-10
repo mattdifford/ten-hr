@@ -1,3 +1,13 @@
 .header-image {
   background-color: var(--colour-primary);
+  min-height: 100vh;
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+  &__slide {
+    &-inner {
+      display: flex;
+      align-items: center;
+    }
+  }
 }

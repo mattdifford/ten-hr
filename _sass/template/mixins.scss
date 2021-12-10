@@ -78,6 +78,7 @@ $tablet: (
   text-decoration: none;
   font-family: var(--font-primary);
   text-align: center;
+  text-transform: uppercase;
   @if ($size == "sm") {
     padding: 10px 20px;
   } @else if ($size == "md") {
