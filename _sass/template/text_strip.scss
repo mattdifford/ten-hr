@@ -2,7 +2,10 @@
   padding: 40px 0;
   position: relative;
   overflow: hidden;
-  //background: var(--colour-secondary);
+  background-position: right center;
+  background-size: 60% auto;
+  background-repeat: no-repeat;
+  z-index: 2;
   &__wrapper {
     display: flex;
     align-items: center;
@@ -17,10 +20,26 @@
     &-left {
       flex: 0 1 40%;
       padding-right: 40px;
+      background-color: var(--colour-secondary);
+      position: relative;
+      &:before {
+        content: "";
+        height: 100%;
+        display: block;
+        right: 100%;
+        width: 40%;
+        top: 0;
+        position: absolute;
+        background-color: var(--colour-secondary);
+      }
     }
     &-right {
       flex: 0 1 60%;
       padding-left: 100px;
+      p {
+        font-family: var(--font-primary);
+        font-size: 20px;
+      }
     }
     h1 {
       font-size: var(--h1-font-size-text-strip, 60px);
@@ -30,6 +49,11 @@
       strong {
         color: var(--colour-tertiary);
       }
+    }
+    h4 {
+      font-family: var(--font-primary);
+      font-size: 30px;
+      margin: 0 0 15px;
     }
   }
   @include in_size($xs) {

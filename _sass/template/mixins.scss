@@ -71,7 +71,8 @@ $tablet: (
   border: 2px solid $border;
   color: $color;
   font-size: 16px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-weight: 700;
   transition: all 0.2s ease-in-out 0s;
   cursor: pointer;
@@ -79,16 +80,24 @@ $tablet: (
   font-family: var(--font-tertiary);
   text-align: center;
   text-transform: uppercase;
+  &:before {
+    content: url("/images/arrow.svg");
+    margin-right: 17px;
+    transition: transform 0.2s ease-in-out 0s;
+  }
   @if ($size == "sm") {
     padding: 10px 20px;
   } @else if ($size == "md") {
     padding: 10px 30px;
   } @else {
-    padding: 10px 40px;
+    padding: 10px 40px 10px 20px;
   }
   &:not(:disabled):hover {
     background: $hover;
     color: $color_hover;
+    &:before {
+      transform: translateX(5px);
+    }
   }
   &:disabled {
     opacity: 0.3;

@@ -7,7 +7,7 @@
             <h3 class="team-strip__title"><strong>Ten HR</strong> team</h3>
             <div class="team-strip__list">
                 {% for item in team_members %}
-                <div class="team-strip__item">
+                <div class="team-strip__item scrollwatch">
                     <div class="team-strip__item-image">{% include picture.html url=item.story.content.image.filename
                         alt=item.story.content.name %}</div>
                     <h4 class="team-strip__item-title">{{item.story.content.name}}</h4>
