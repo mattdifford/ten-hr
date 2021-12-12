@@ -1,9 +1,21 @@
 {{blok._editable}}
+{% assign team_members = site.pages | where_exp: "item", "item.story.content.component == 'team_member'" | json%}
 <div class="team-strip">
     <div class="container">
         <div class="team-strip__wrapper">
-            <h6>Welcome</h6>
-            <h3><strong>Ten HR</strong> team</h3>
+            <h6 class="team-strip__keyword">Welcome</h6>
+            <h3 class="team-strip__title"><strong>Ten HR</strong> team</h3>
+            <div class="team-strip__list">
+                {% for item in team_members %}
+                <div class="team-strip__item">
+                    <div class="team-strip__item-image">{% include picture.html url=item.story.content.image.filename
+                        alt=item.story.content.name %}</div>
+                    <h4 class="team-strip__item-title">{{item.story.content.name}}</h4>
+                    <p class="team-strip__item-content">{{item.story.content.content | strip_html | truncatewords: 30}}</p>
+                    <p><a href="/{{item.story.full_slug}}" class="button team-strip__item-button">Read more</a></p>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

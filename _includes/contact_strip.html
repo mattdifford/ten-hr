@@ -1,11 +1,30 @@
 {{blok._editable}}
 <div class="contact-strip">
     <div class="container">
-        <h6>Explore</h6>
-        <h3>Contact <strong>Ten HR</strong></h3>
-        <form netlify>
-
-        </form>
+        <div class="contact-strip__wrapper">
+            <h6 class="contact-strip__keyword">Explore</h6>
+            <h3 class="contact-strip__title">Contact <strong>Ten HR</strong></h3>
+            <div class="contact-strip__form-wrapper">
+                <form netlify class="contact-strip__form form">
+                    <div class="form__field field">
+                        <input type="text" required class="field__input" name="name" id="name_field">
+                        <label for="name_field" class="field__label field__label--floating">Name</label>
+                    </div>
+                    <div class="form__field field">
+                        <input type="email" required class="field__input" name="email" id="email_field">
+                        <label for="email_field" class="field__label field__label--floating">Email</label>
+                    </div>
+                    <div class="form__field field">
+                        <input type="tel" required class="field__input" name="phone" id="phone_field">
+                        <label for="phone_field" class="field__label field__label--floating">Phone</label>
+                    </div>
+                    <div class="form__field field">
+                        <input type="file" required class="field__input" name="cv" id="cv_field">
+                        <label for="cv_field" class="field__label">Upload your CV</label>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 {% include style.html blok=blok %}

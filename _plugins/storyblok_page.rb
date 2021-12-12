@@ -51,7 +51,6 @@ module Jekyll
     end
  
     def create_page(site, story, link, global)
-      
       if story['full_slug'] == 'home'
         site.pages << StoryblokPage.new(site, site.source, '', story, link, global)
       elsif story['full_slug'] != 'global'

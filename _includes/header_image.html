@@ -1,7 +1,7 @@
 {{blok._editable}}
 <div class="header-image">
     {% for slide in blok.slides %}
-        <div class="header-image__slide">
+        <div class="header-image__slide{% if forloop.first %} header-image__slide--active{% endif %}">
             <div class="container">
                 <div class="header-image__slide-inner">
                     <div class="header-image__slide-content">
