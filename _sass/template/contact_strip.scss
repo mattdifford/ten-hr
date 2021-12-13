@@ -1,35 +1,38 @@
 .contact-strip {
   background-color: var(--colour-primary);
   color: #fff;
-  padding: 100px 0;
   position: relative;
-  &__wrapper {
-    position: relative;
-    z-index: 2;
-    padding-left: 50px;
-  }
-  &:before {
-    content: "";
-    display: block;
-    width: 180px;
-    height: 100%;
-    background-color: var(--colour-secondary);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-  &:after {
-    content: "";
-    background-image: url("/images/arrows.png");
-    transform: rotate(180deg);
-    position: absolute;
-    right: 50px;
-    top: 20%;
-    height: 100%;
-    width: 25%;
-    background-size: contain;
-    background-repeat: no-repeat;
+  padding: 50px 0;
+  @include in_size($sm) {
+    padding: 100px 0;
+    &:before {
+      content: "";
+      display: block;
+      width: 180px;
+      height: 100%;
+      background-color: var(--colour-secondary);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    &:after {
+      content: "";
+      background-image: url("/images/arrows.png");
+      transform: rotate(180deg);
+      position: absolute;
+      right: 50px;
+      top: 20%;
+      height: 100%;
+      width: 25%;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    &__wrapper {
+      position: relative;
+      z-index: 2;
+      padding-left: 50px;
+    }
   }
   &__keyword {
     text-transform: uppercase;
@@ -46,13 +49,18 @@
       display: block;
       font-family: var(--font-secondary);
     }
+    @include in_size($xs) {
+      font-size: 52px;
+    }
   }
   &__form {
-    flex: 0 1 65%;
-    margin-top: -50px;
-    &-wrapper {
-      display: flex;
-      justify-content: flex-end;
+    @include in_size($sm) {
+      flex: 0 1 65%;
+      margin-top: -50px;
+      &-wrapper {
+        display: flex;
+        justify-content: flex-end;
+      }
     }
   }
 }

@@ -109,9 +109,9 @@ $tablet: (
   @include button(
     $background: var(--colour-secondary),
     $border: var(--colour-secondary),
-    $color: var(--colour-secondary-text),
+    $color: #fff,
     $hover: var(--colour-secondary-lighten),
-    $color_hover: var(--colour-secondary-text),
+    $color_hover: #fff,
     $border_hover: var(--colour-secondary-lighten),
     $size: $size
   );

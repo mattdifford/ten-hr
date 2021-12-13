@@ -1,5 +1,5 @@
 .text-strip {
-  padding: 40px 0;
+  padding: 50px 0;
   position: relative;
   overflow: hidden;
   background-position: right center;
@@ -32,10 +32,27 @@
         position: absolute;
         background-color: var(--colour-secondary);
       }
+      @include in_size($xs) {
+        &:after {
+          content: "";
+          height: 100%;
+          display: block;
+          left: 100%;
+          width: 40%;
+          top: 0;
+          position: absolute;
+          background-color: var(--colour-secondary);
+        }
+      }
     }
     &-right {
       flex: 0 1 60%;
-      padding-left: 100px;
+      @include in_size($sm) {
+        padding-left: 100px;
+      }
+      @include in_size($xs) {
+        padding-top: 50px;
+      }
       p {
         font-family: var(--font-primary);
         font-size: 20px;
@@ -54,6 +71,9 @@
       font-family: var(--font-primary);
       font-size: 30px;
       margin: 0 0 15px;
+    }
+    .button {
+      @include button-secondary();
     }
   }
   @include in_size($xs) {

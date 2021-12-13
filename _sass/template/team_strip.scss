@@ -1,46 +1,52 @@
 .team-strip {
   background-color: var(--colour-secondary);
   color: #fff;
-  padding: 100px 0 200px;
   position: relative;
-  &:before {
-    content: "";
-    display: block;
-    width: 80px;
-    height: 100%;
-    background-color: var(--colour-primary);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-  &:after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 150px;
-    background-color: var(--colour-primary);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
+  overflow: hidden;
+  padding: 50px 0;
+  @include in_size($sm) {
+    padding: 100px 0 200px;
+    &:before {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 100%;
+      background-color: var(--colour-primary);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    &:after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 150px;
+      background-color: var(--colour-primary);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+    }
   }
   &__wrapper {
     position: relative;
     z-index: 2;
-    padding-left: 100px;
-    &:before {
-      content: "The Team";
-      font-family: var(--font-secondary);
-      font-size: 150px;
-      opacity: 0.1;
-      position: absolute;
-      transform: rotate(-20deg);
-      text-transform: uppercase;
-      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
-        1px 1px 0 #fff;
-      z-index: -1;
-      color: var(--colour-secondary);
+    @include in_size($sm) {
+      padding-left: 100px;
+      &:before {
+        content: "The Team";
+        font-family: var(--font-secondary);
+        font-size: 150px;
+        opacity: 0.1;
+        position: absolute;
+        transform: rotate(-20deg);
+        text-transform: uppercase;
+        text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+          1px 1px 0 #fff;
+        z-index: -1;
+        color: var(--colour-secondary);
+      }
     }
   }
   &__keyword {
@@ -59,6 +65,9 @@
       font-family: var(--font-secondary);
       color: var(--colour-tertiary);
     }
+    @include in_size($xs) {
+      font-size: 52px;
+    }
   }
   a:not(.button) {
     color: #fff;
@@ -68,17 +77,22 @@
       color: var(--colour-primary);
     }
   }
-  .button {
-    margin-top: 20px;
+  @include in_size($sm) {
+    .button {
+      margin-top: 20px;
+    }
   }
   &__list {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0 -15px;
+    @include in_size($xs) {
+      flex-wrap: wrap;
+    }
   }
   &__item {
-    flex: 0 1 33%;
+    flex: 1 1 33%;
     padding: 0 15px;
     &-title {
       color: var(--colour-primary);
@@ -100,6 +114,10 @@
     &-content {
       font-family: var(--font-primary);
       font-size: 20px;
+    }
+    @include in_size($xs) {
+      flex: 1 1 100%;
+      padding: 15px;
     }
   }
 }

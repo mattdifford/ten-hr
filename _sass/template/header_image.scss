@@ -40,10 +40,16 @@
         right: 0;
         top: 0;
         z-index: 1;
+        @include in_size($xs) {
+          width: 40%;
+        }
+      }
+      @include in_size($xs) {
+        flex-wrap: wrap;
       }
     }
     &-content {
-      flex: 0 1 50%;
+      flex: 1 1 50%;
       position: relative;
       z-index: 2;
       h2,
@@ -52,6 +58,9 @@
         line-height: 1;
         margin: 0;
         text-transform: uppercase;
+        @include in_size($xs) {
+          font-size: 38px;
+        }
       }
       p {
         color: #fff;
@@ -64,7 +73,10 @@
     &-image {
       position: relative;
       z-index: 2;
-      flex: 0 1 50%;
+      flex: 1 1 50%;
+      @include in_size($xs) {
+        padding-top: 40px;
+      }
     }
   }
 }
